@@ -11,26 +11,26 @@ const Task = require('../model/task');
 
 
 
-const toilet = {
-    name: "Sand House",
-    photos: {
-        image1: "http://url1",
-        image2: "http://url2",
-        image3: "http://url3"
-    },
-    description: {
-        femaleFriendly: false,
-        urineTanks: true,
-        waterSink: false,
-        mirror: false,
-        shower: true
-    },
-    rating: 4,
-    location: {
-        type: "Point",
-        coordinates: [-112.110492, -36.098948]
-    },
-}
+// const toilet = {
+//     name: "Sand House",
+//     photos: {
+//         image1: "http://url1",
+//         image2: "http://url2",
+//         image3: "http://url3"
+//     },
+//     description: {
+//         femaleFriendly: false,
+//         urineTanks: true,
+//         waterSink: false,
+//         mirror: false,
+//         shower: true
+//     },
+//     rating: 4,
+//     location: {
+//         type: "Point",
+//         coordinates: [-112.110492, -36.098948]
+//     },
+// }
 
 
 
@@ -84,7 +84,7 @@ router.post('/add', async (req, res, next) => {
         status = "FAILED";
         message = "location already Exists"
     } else {
-        const newToilet = new Toilet(toilet);
+        const newToilet = new Toilet(req.body);
         newToilet.save((err, message) => {
             if (err) console.log(err);
             console.log(message);
