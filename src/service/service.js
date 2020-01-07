@@ -1,21 +1,22 @@
 const Toilet = require('../model/toilet');
 
-let isAny = async (lon, lat, maxDist) => {
-    let db_toilets = await Toilet.find({
-        location: {
-            $near: {
-                $maxDistance: maxDist,
-                $geometry: {
-                    type: "Point",
-                    coordinates: [lon, lat]
-                }
-            }
-        }
-    }).find((error) => {
-        if (error) console.log("isAny:" + error);
-    });
-    return db_toilets;
-};
+// async function isAny(lon, lat, maxDist) {
+//     let db_toilets = await Toilet.find({
+//         location: {
+//             $near: {
+//                 $maxDistance: maxDist,
+//                 $geometry: {
+//                     type: "Point",
+//                     coordinates: [lon, lat]
+//                 }
+//             }
+//         }
+//     }).find((error, result) => {
+//         if (error) console.log("isAny:" + error);
+//         return  result;
+//     });
+//     return db_toilets;
+// }
 
 let addNewToilet = (toilet) => {
     const newToilet = new Toilet(toilet);
@@ -25,7 +26,24 @@ let addNewToilet = (toilet) => {
     });
 };
 
+let getNear = async (coordinates, maxDist) => {
+    return await Toilet.find({
+        location: {
+            $near: {
+                $maxDistance: maxDist,
+                $geometry: {
+                    type: "Point",
+                    coordinates: coordinates
+                }
+            }
+        }
+    }).find((error, result) => {
+        if (error) console.log("isAny:" + error);
+        return result;
+    });
+};
+
 
 module.exports = {
-    isAny, addNewToilet
+    addNewToilet, getNear
 };
