@@ -91,7 +91,7 @@ router.post('/add', async (req, res, next) => {
     let latt = req.body.location.coordinates[1];
     let maxDist = 200;
 
-    if (service.isAny(long, latt, maxDist).length === 0) {
+    if (!service.isAny(long, latt, maxDist).length > 0) {
         try {
             console.log(req.body.name + " request received");
             upload(req, res, err => {
