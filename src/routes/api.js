@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const multer = require('multer');
+var path = require('path');
+const fs = require('fs');
+
 var bodyParser = require('body-parser');
 router.use(bodyParser.json()); // support json encoded bodies
 router.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
