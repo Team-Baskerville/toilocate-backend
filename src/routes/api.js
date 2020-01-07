@@ -10,7 +10,6 @@ router.use(bodyParser.json()); // support json encoded bodies
 router.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 const Toilet = require('../model/toilet');
-
 const Task = require('../model/task');
 
 
