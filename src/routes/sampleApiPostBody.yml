@@ -1,0 +1,13 @@
+name: "Sand House"
+gender: male | female | unisex
+description:
+  femaleFriendly: true | false
+  urineTanks: true | false
+  waterSink: true | false
+  mirror: true | false
+  shower: true | false
+rating: 1-5
+location:
+  type: Point
+  coordinates: [lon, lat]
+imageURL: "http://ipaddress:3000/api/get-image/xdfghr.jpg"
