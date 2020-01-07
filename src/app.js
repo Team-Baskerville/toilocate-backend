@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost/toilocate-db')
 
 // importing routes
 const indexRoutes = require('./routes/index');
-const apiRoutes = require('./routes/api');
+const apiRoutes = require('./routes/api2');
 
 // settings
 app.set('port', process.env.PORT || 3000);
@@ -21,7 +21,8 @@ app.set('view engine', 'ejs');
 
 // middlewares
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false}));
+app.use('/api/uploads', express.static('uploads'));
 
 // routes
 app.use('/', indexRoutes);

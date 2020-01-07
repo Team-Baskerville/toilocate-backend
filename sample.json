@@ -1,0 +1,23 @@
+{
+  "name": "Monkey Island",
+  "photos": {
+    "image1": "http://url1",
+    "image2": "http://url2",
+    "image3": "http://url3"
+  },
+  "description": {
+    "femaleFriendly": false,
+    "urineTanks": true,
+    "waterSink": false,
+    "mirror": false,
+    "shower": true
+  },
+  "rating": 4,
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      50.0001,
+      50.0000002
+    ]
+  }
+}
