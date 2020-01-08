@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/');
     },
     filename: function (req, file, cb) {
-        var name = req.body.name;
+        var name = req.query.name;
         var originalFileName = file.originalname;
         name = name.replace(/\s/g, '');
         originalFileName = originalFileName.replace(/\s/g, '');
