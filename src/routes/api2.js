@@ -3,7 +3,6 @@ const router = express.Router();
 const multer = require('multer');
 const bodyParser = require('body-parser');
 const Toilet = require('../model/toilet');
-const Image = require('../model/image');
 const service = require('../service/service');
 
 router.use(bodyParser.json()); // support json encoded bodies

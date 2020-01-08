@@ -13,6 +13,7 @@ mongoose.connect('mongodb://localhost/toilocate-db')
 // importing routes
 const indexRoutes = require('./routes/index');
 const apiRoutes = require('./routes/api2');
+const userRoutes = require('./routes/user');
 
 // settings
 app.set('port', process.env.PORT || 3000);
@@ -27,6 +28,7 @@ app.use('/api/uploads', express.static('uploads'));
 // routes
 app.use('/', indexRoutes);
 app.use('/api',apiRoutes);
+app.use('/user',userRoutes);
 
 app.listen(app.get('port'), () => {
   console.log(`server on port ${app.get('port')}`);
