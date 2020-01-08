@@ -23,7 +23,9 @@ router.post('/add', async (req, res, next) => {
             urineTanks: req.body.urineTanks != undefined ? true : false,
             waterSink: req.body.waterSink != undefined ? true : false,
             mirror: req.body.mirror != undefined ? true : false,
-            shower: req.body.shower != undefined ? true : false
+            shower: req.body.shower != undefined ? true : false,
+            commode: req.body.commode != undefined ? true : false,
+            squat: req.body.squat != undefined ? true : false
         },
         rating: parseInt(req.body.rating),
         location:{
@@ -65,7 +67,9 @@ router.post('/edit/:id', async (req, res, next) => {
             urineTanks: req.body.urineTanks != undefined ? true : false,
             waterSink: req.body.waterSink != undefined ? true : false,
             mirror: req.body.mirror != undefined ? true : false,
-            shower: req.body.shower != undefined ? true : false
+            shower: req.body.shower != undefined ? true : false,
+            commode: req.body.commode != undefined ? true : false,
+            squat: req.body.squat != undefined ? true : false
         },
         rating: parseInt(req.body.rating),
         location:{

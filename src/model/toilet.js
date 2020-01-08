@@ -30,6 +30,14 @@ const ToiletSchema = Schema({
         shower: {
             type: Boolean,
             default: false
+        },
+        commode: {
+            type: Boolean,
+            default: false
+        },
+        squat: {
+            type: Boolean,
+            default: false
         }
     },
     rating: Number,
