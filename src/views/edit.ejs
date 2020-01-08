@@ -6,17 +6,74 @@
     <div class="col-md-5 offset-md-3">
       <div class="card">
         <div class="card-body">
-          <form action="/edit/<%= task._id %>" method="post">
+          <form action="/edit/<%= toilet._id %>" method="post">
             <div class="form-group">
-              <input class="form-control" type="text" name="title" placeholder="Title" value="<%= task.title %>">
+              <input class="form-control" type="text" name="name" placeholder="Name of the location"
+                value="<%= toilet.name %>">
             </div>
             <div class="form-group">
-              <textarea class="form-control" name="description" cols="80"
-                placeholder="Add a Description"
-                ><%= task.description %></textarea>
+              <input class="form-control" type="text" name="gender" placeholder="male | female | unixex"
+                value="<%= toilet.gender %>">
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="femaleFriendly" name="femaleFriendly"
+                  <%= toilet.description.femaleFriendly ? "checked" : "" %>>
+                <label class="form-check-label" for="femaleFriendly">
+                  femaleFriendly
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="urineTanks" name="urineTanks"
+                  <%= toilet.description.urineTanks ? "checked" : "" %>>
+                <label class="form-check-label" for="urineTanks">
+                  urineTanks
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="waterSink"
+                  <%= toilet.description.waterSink ? "checked" : ""  %>>
+                <label class="form-check-label" for="waterSink">
+                  waterSink
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox"  name="mirror"
+                  <%= toilet.description.mirror ? "checked" : "" %>>
+                <label class="form-check-label" for="mirror">
+                  mirror
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="shower"
+                  <%= toilet.description.shower ? "checked" : "" %>>
+                <label class="form-check-label" for="shower">
+                  shower
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="number" name="rating" placeholder="Rating" value="<%= toilet.rating %>">
+            </div>
+            <div class="form-group">
+              <label for="location">Location</label>
+              <div class="row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Longitude" name="longitude"
+                    value="<%= toilet.location.coordinates[0] %>">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Lattitude" name="latitude"
+                    value="<%= toilet.location.coordinates[1] %>">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="imagePath" placeholder="Image Path"
+                value="<%= toilet.imagePath %>">
             </div>
             <button class="btn btn-primary" type="submit">
-              Update 
+              Update
             </button>
           </form>
         </div>
