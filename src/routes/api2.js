@@ -6,7 +6,7 @@ const Toilet = require('../model/toilet');
 const service = require('../service/service');
 
 router.use(bodyParser.json()); // support json encoded bodies
-router.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
+router.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({storage: storage});
+const upload = multer({ storage: storage });
 const type = upload.single('image');
 
 // add image function
@@ -41,7 +41,7 @@ router.get('/get-all', async (req, res, next) => {
     const toilets = await Toilet.find();
     res.status(200).json({
         status: 'DONE',
-        payload: {toilets}
+        payload: { toilets }
     });
 });
 
@@ -98,29 +98,39 @@ router.post('/add', async (req, res, next) => {
     res.status(200).json({
         status,
         message,
-        payload: {req: req.body}
+        payload: { req: req.body }
     });
 });
 
 // add rating
 router.post('/rate', async (req, res, next) => {
-    let toiletId = req.body.id;
-    let newRating = req.body.rating;
+    try {
+        let toiletId = req.body.id;
+        let newRating = req.body.rating;
 
-    const toilet = await Toilet.findById(req.body.id);
-    console.log(toilet);
-    let totalRating = newRating + toilet.rating * toilet.noOfRes;
-    updateToilet = {
-        name: toilet.name,
-        gender: toilet.gender,
-        description: toilet.description,
-        rating: totalRating / (toilet.noOfRes + 1),
-        noOfRes: toilet.noOfRes + 1,
-        location: toilet.location,
-        imagePath: toilet.imagePath
-    };
-    await Toilet.update({_id: toiletId}, updateToilet);
-    res.status(200).json({updateToilet});
+        const toilet = await Toilet.findById(req.body.id);
+        console.log(toilet);
+        let totalRating = newRating + toilet.rating * toilet.noOfRes;
+        updateToilet = {
+            name: toilet.name,
+            gender: toilet.gender,
+            description: toilet.description,
+            rating: totalRating / (toilet.noOfRes + 1),
+            noOfRes: toilet.noOfRes + 1,
+            location: toilet.location,
+            imagePath: toilet.imagePath
+        };
+        await Toilet.update({ _id: toiletId }, updateToilet);
+        res.status(200).json({
+            status: "OK",
+            payload: updateToilet.rating
+        });
+    } catch (err) {
+        res.status(200).json({
+            status: "FAILED",
+            message: err
+        });
+    }
 });
 
 module.exports = router;
