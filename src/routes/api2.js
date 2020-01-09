@@ -123,12 +123,14 @@ router.post('/rate', async (req, res, next) => {
         await Toilet.update({ _id: toiletId }, updateToilet);
         res.status(200).json({
             status: "OK",
-            payload: updateToilet.rating
+            message: "Rating updated successfully",
+            rating: updateToilet.rating
         });
     } catch (err) {
         res.status(200).json({
             status: "FAILED",
-            message: err
+            message: "Rating updating failed",
+            rating: 0
         });
     }
 });
