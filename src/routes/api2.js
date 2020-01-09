@@ -66,7 +66,7 @@ router.post('/add', async (req, res, next) => {
 
     let long = req.body.location.coordinates[0];
     let latt = req.body.location.coordinates[1];
-    let maxDist = 200;
+    let maxDist = 20;
 
     const db_toilets = await Toilet.find({
         location: {
