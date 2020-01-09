@@ -41,6 +41,7 @@ const ToiletSchema = Schema({
         }
     },
     rating: Number,
+    noOfRes: {type: Number, default: 1},
     location: {
         type: {type: String},
         coordinates: []

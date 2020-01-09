@@ -102,4 +102,25 @@ router.post('/add', async (req, res, next) => {
     });
 });
 
+// add rating
+router.post('/rate', async (req, res, next) => {
+    let toiletId = req.body.id;
+    let newRating = req.body.rating;
+
+    const toilet = await Toilet.findById(req.body.id);
+    console.log(toilet);
+    let totalRating = newRating + toilet.rating * toilet.noOfRes;
+    updateToilet = {
+        name: toilet.name,
+        gender: toilet.gender,
+        description: toilet.description,
+        rating: totalRating / (toilet.noOfRes + 1),
+        noOfRes: toilet.noOfRes + 1,
+        location: toilet.location,
+        imagePath: toilet.imagePath
+    };
+    await Toilet.update({_id: toiletId}, updateToilet);
+    res.status(200).json({updateToilet});
+});
+
 module.exports = router;
