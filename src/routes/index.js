@@ -3,6 +3,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const Task = require('../model/task');
 const Toilet = require('../model/toilet');
+const User = require('../model/user');
 
 router.use(bodyParser.json()); // support json encoded bodies
 router.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -86,6 +87,19 @@ router.get('/delete/:id', async (req, res, next) => {
     let { id } = req.params;
     await Toilet.remove({ _id: id });
     res.redirect('/');
+});
+
+router.get('/users', async (req, res) => {
+    const users = await User.find();
+    res.render('index2', {
+        users
+    });
+});
+
+router.get('/user/delete/:id', async (req, res, next) => {
+    let { id } = req.params;
+    await User.remove({ _id: id });
+    res.redirect('/users');
 });
 
 
