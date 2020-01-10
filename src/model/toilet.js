@@ -46,6 +46,7 @@ const ToiletSchema = Schema({
         type: {type: String},
         coordinates: []
     },
+    userId: String,
     status: {
         type: Boolean,
         default: false

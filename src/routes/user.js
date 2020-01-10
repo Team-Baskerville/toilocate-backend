@@ -13,19 +13,33 @@ router.post('/login', (req, res) => {
     User.findOne({ email: req.body.email }, function (err, user) {
         if (user === null) {
             return res.status(400).send({
-                message: "User not found."
+                message: "User not found.",
+                user:{
+                    id:null,
+                    name:null,
+                    email:null
+                }
             });
         }
         else {
             if (user.validPassword(req.body.password)) {
                 return res.status(201).send({
                     message: "User Logged In",
-                    user
+                    user:{
+                        id:user._id,
+                        name:user.name,
+                        email:user.email
+                    }
                 })
             }
             else {
                 return res.status(400).send({
-                    message: "Wrong Password"
+                    message: "Wrong Password",
+                    user:{
+                        id:null,
+                        name:null,
+                        email:null
+                    }
                 });
             }
         }
@@ -51,12 +65,21 @@ router.post('/signup', (req, res, next) => {
         if (err) {
             return res.status(400).send({
                 message: "Failed to add user.",
+                user:{
+                    id:null,
+                    name:null,
+                    email:null
+                }
             });
         }
         else {
             return res.status(201).send({
                 message: "User added successfully.",
-                newUser
+                user:{
+                    id:newUser._id,
+                    name:newUser.name,
+                    email:newUser.email
+                }
             });
         }
     });

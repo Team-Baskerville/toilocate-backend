@@ -19,8 +19,8 @@ router.post('/add', async (req, res, next) => {
     let newToilet = {
         name: req.body.name,
         gender: req.body.gender,
-        description:{
-            femaleFriendly:req.body.femaleFriendly != undefined ? true : false,
+        description: {
+            femaleFriendly: req.body.femaleFriendly != undefined ? true : false,
             urineTanks: req.body.urineTanks != undefined ? true : false,
             waterSink: req.body.waterSink != undefined ? true : false,
             mirror: req.body.mirror != undefined ? true : false,
@@ -29,11 +29,12 @@ router.post('/add', async (req, res, next) => {
             squat: req.body.squat != undefined ? true : false
         },
         rating: parseInt(req.body.rating),
-        location:{
+        location: {
             type: "Point",
             coordinates: [parseFloat(req.body.longitude), parseFloat(req.body.latitude)]
         },
-        imagePath: req.body.imagePath
+        imagePath: req.body.imagePath,
+        userId: req.body.userId
     };
     const toilet = new Toilet(newToilet);
     await toilet.save();
@@ -63,8 +64,8 @@ router.post('/edit/:id', async (req, res, next) => {
     let updateToilet = {
         name: req.body.name,
         gender: req.body.gender,
-        description:{
-            femaleFriendly:req.body.femaleFriendly != undefined ? true : false,
+        description: {
+            femaleFriendly: req.body.femaleFriendly != undefined ? true : false,
             urineTanks: req.body.urineTanks != undefined ? true : false,
             waterSink: req.body.waterSink != undefined ? true : false,
             mirror: req.body.mirror != undefined ? true : false,
@@ -73,13 +74,14 @@ router.post('/edit/:id', async (req, res, next) => {
             squat: req.body.squat != undefined ? true : false
         },
         rating: parseInt(req.body.rating),
-        location:{
+        location: {
             type: "Point",
             coordinates: [parseFloat(req.body.longitude), parseFloat(req.body.latitude)]
         },
-        imagePath: req.body.imagePath
+        imagePath: req.body.imagePath,
+        userId: req.body.userId
     }
-    await Toilet.update({_id: id}, updateToilet);
+    await Toilet.update({ _id: id }, updateToilet);
     res.redirect('/');
 });
 

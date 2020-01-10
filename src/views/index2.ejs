@@ -2,32 +2,31 @@
 
 <div class="container">
     <div class="row">
-
-        <div class="col-md-7">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>Index</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Salt</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(var i=0; i < users.length; i++) { %>
-                    <tr>
-                        <td><%= i + 1%></td>
-                        <td><strong><%= users[i].name %></strong></td>
-                        <td><%= users[i].email %></td>
-                        <td><%= users[i].salt %></td>
-                        <td>
-                            <a href="user/delete/<%= users[i]._id %>" class="btn btn-danger">
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-                    <% } %>
-                </tbody>
-            </table>
-        </div>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>User Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Salt</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i < users.length; i++) { %>
+                <tr>
+                    <td><%= i + 1%></td>
+                    <td><%= users[i]._id %></td>
+                    <td><strong><%= users[i].name %></strong></td>
+                    <td><%= users[i].email %></td>
+                    <td><%= users[i].salt %></td>
+                    <td>
+                        <a href="user/delete/<%= users[i]._id %>" class="btn btn-danger">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
     </div>
